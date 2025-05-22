@@ -1,0 +1,1296 @@
+ DATE 19/05/2025     Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| rays               |
+| sys                |
++--------------------+
+5 rows in set (0.02 sec)
+
+mysql> use rays;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_rays |
++----------------+
+| employee       |
+| marksheet      |
+| marksheet1     |
+| st_college     |
+| st_course      |
+| st_faculty     |
+| st_marksheet   |
+| st_role        |
+| st_student     |
+| st_subject     |
+| st_timetable   |
+| st_user        |
+| user           |
+| user3          |
++----------------+
+14 rows in set (0.01 sec)
+
+mysql> use marksheet;
+ERROR 1049 (42000): Unknown database 'marksheet'
+mysql> select *from marksheet;
++--------+--------+---------+-----------+-------+
+| rollno | Name   | physics | chemistry | maths |
++--------+--------+---------+-----------+-------+
+|      1 | Amit   |      82 |        81 |    95 |
+|      2 | Aastik |      65 |        73 |    89 |
+|      3 | Chetan |      45 |        33 |    25 |
+|      4 | Akbar  |      22 |        21 |    35 |
++--------+--------+---------+-----------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into marksheet values(5,'lucky',89,88,88);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from marksheet;
++--------+--------+---------+-----------+-------+
+| rollno | Name   | physics | chemistry | maths |
++--------+--------+---------+-----------+-------+
+|      1 | Amit   |      82 |        81 |    95 |
+|      2 | Aastik |      65 |        73 |    89 |
+|      3 | Chetan |      45 |        33 |    25 |
+|      4 | Akbar  |      22 |        21 |    35 |
+|      5 | lucky  |      89 |        88 |    88 |
++--------+--------+---------+-----------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> insert into marksheet values(6,'anushka',99,86,28)(7.'shruti',33,33,33,);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(7.'shruti',33,33,33,)' at line 1
+mysql> insert into marksheet values(6,'anushka',99,86,28);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from marksheet;
++--------+---------+---------+-----------+-------+
+| rollno | Name    | physics | chemistry | maths |
++--------+---------+---------+-----------+-------+
+|      1 | Amit    |      82 |        81 |    95 |
+|      2 | Aastik  |      65 |        73 |    89 |
+|      3 | Chetan  |      45 |        33 |    25 |
+|      4 | Akbar   |      22 |        21 |    35 |
+|      5 | lucky   |      89 |        88 |    88 |
+|      6 | anushka |      99 |        86 |    28 |
++--------+---------+---------+-----------+-------+
+6 rows in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| rays               |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use rays;
+Database changed
+mysql> create table marksheet2(id int primary key,rollno int,name varchar(50),physics int,chemistry int,maths int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_rays |
++----------------+
+| employee       |
+| marksheet      |
+| marksheet1     |
+| marksheet2     |
+| st_college     |
+| st_course      |
+| st_faculty     |
+| st_marksheet   |
+| st_role        |
+| st_student     |
+| st_subject     |
+| st_timetable   |
+| st_user        |
+| user           |
+| user3          |
++----------------+
+15 rows in set (0.00 sec)
+
+mysql> inset into marksheet2 values(1,11,'amit',33,33,33);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inset into marksheet2 values(1,11,'amit',33,33,33)' at line 1
+mysql> insert into marksheet2 values(1,11,'amit',33,33,33);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from marksheet;
++--------+---------+---------+-----------+-------+
+| rollno | Name    | physics | chemistry | maths |
++--------+---------+---------+-----------+-------+
+|      1 | Amit    |      82 |        81 |    95 |
+|      2 | Aastik  |      65 |        73 |    89 |
+|      3 | Chetan  |      45 |        33 |    25 |
+|      4 | Akbar   |      22 |        21 |    35 |
+|      5 | lucky   |      89 |        88 |    88 |
+|      6 | anushka |      99 |        86 |    28 |
++--------+---------+---------+-----------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select *from marksheet2;
++----+--------+------+---------+-----------+-------+
+| id | rollno | name | physics | chemistry | maths |
++----+--------+------+---------+-----------+-------+
+|  1 |     11 | amit |      33 |        33 |    33 |
++----+--------+------+---------+-----------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into marksheet2 values(2,12,'amit',33,33,33);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql> insert into marksheet2 values(2,12,'lucky',32,32,32);
+ERROR 1062 (23000): Duplicate entry '2' for key 'marksheet2.PRIMARY'
+mysql> select *from marksheet2;
++----+--------+------+---------+-----------+-------+
+| id | rollno | name | physics | chemistry | maths |
++----+--------+------+---------+-----------+-------+
+|  1 |     11 | amit |      33 |        33 |    33 |
+|  2 |     12 | amit |      33 |        33 |    33 |
++----+--------+------+---------+-----------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into marksheet2 values(3,13,'akbar',34,34,34);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from marksheet2;
++----+--------+-------+---------+-----------+-------+
+| id | rollno | name  | physics | chemistry | maths |
++----+--------+-------+---------+-----------+-------+
+|  1 |     11 | amit  |      33 |        33 |    33 |
+|  2 |     12 | amit  |      33 |        33 |    33 |
+|  3 |     13 | akbar |      34 |        34 |    34 |
++----+--------+-------+---------+-----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into marksheet2 values(4,14,'anshul',99,89,65),(5,14,'vedic',65,65,65),(6,15,'ashtik',33,34,35),(7,15,'chetan',45,45,45),(8,16,'lucky',55,55,55);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select *from marksheet2;
++----+--------+--------+---------+-----------+-------+
+| id | rollno | name   | physics | chemistry | maths |
++----+--------+--------+---------+-----------+-------+
+|  1 |     11 | amit   |      33 |        33 |    33 |
+|  2 |     12 | amit   |      33 |        33 |    33 |
+|  3 |     13 | akbar  |      34 |        34 |    34 |
+|  4 |     14 | anshul |      99 |        89 |    65 |
+|  5 |     14 | vedic  |      65 |        65 |    65 |
+|  6 |     15 | ashtik |      33 |        34 |    35 |
+|  7 |     15 | chetan |      45 |        45 |    45 |
+|  8 |     16 | lucky  |      55 |        55 |    55 |
++----+--------+--------+---------+-----------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into marksheet2 values(9,17,'kiran',99,87,55),(10,18,'harsh',75,75,65),(11,18,'prince',100,100,99),(12,19,'divyanshu',85,45,88),(13,20,'monty',35,67,95);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select *from marksheet2;
++----+--------+-----------+---------+-----------+-------+
+| id | rollno | name      | physics | chemistry | maths |
++----+--------+-----------+---------+-----------+-------+
+|  1 |     11 | amit      |      33 |        33 |    33 |
+|  2 |     12 | amit      |      33 |        33 |    33 |
+|  3 |     13 | akbar     |      34 |        34 |    34 |
+|  4 |     14 | anshul    |      99 |        89 |    65 |
+|  5 |     14 | vedic     |      65 |        65 |    65 |
+|  6 |     15 | ashtik    |      33 |        34 |    35 |
+|  7 |     15 | chetan    |      45 |        45 |    45 |
+|  8 |     16 | lucky     |      55 |        55 |    55 |
+|  9 |     17 | kiran     |      99 |        87 |    55 |
+| 10 |     18 | harsh     |      75 |        75 |    65 |
+| 11 |     18 | prince    |     100 |       100 |    99 |
+| 12 |     19 | divyanshu |      85 |        45 |    88 |
+| 13 |     20 | monty     |      35 |        67 |    95 |
++----+--------+-----------+---------+-----------+-------+
+13 rows in set (0.00 sec)
+
+mysql> select *(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics>=33and chemistry>=33 and maths>=33;'pass',fail)as result from marksheet2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(p' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''pass',fail)as result from marksheet2' at line 1
+mysql> select *(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics>=33and chemistry>=33 and maths>=33;'pass',fail)as result from marksheet2
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(p' at line 1
+    -> select *(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >=33and chemistry>=33 and maths >=33;'pass', fail )as result from marksheet2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''pass',fail)as result from marksheet2
+select *(physics+chemisty+maths)as total,(' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''pass', fail )as result from marksheet2' at line 1
+mysql> select *(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >=33and chemistry>=33 and maths >=33; 'pass', 'fail' )as result from marksheet2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(p' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''pass', 'fail' )as result from marksheet2' at line 1
+mysql> select *(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >=33and chemistry>=33 and maths >=33; 'pass','fail' )as result from marksheet2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(p' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''pass','fail' )as result from marksheet2' at line 1
+mysql> select *(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >=33and chemistry>=33 and maths >=33;'pass','fail' )as result from marksheet2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(p' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''pass','fail' )as result from marksheet2' at line 1
+mysql> select *,(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >=33and chemistry>=33 and maths >=33;'pass','fail' )as result from marksheet2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'chemistry>=33 and maths >=33' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''pass','fail' )as result from marksheet2' at line 1
+mysql> select *,(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >=33and chemistry>=33 and maths >=33;'pass','fail' )as result from marksheet2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'chemistry>=33 and maths >=33' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''pass','fail' )as result from marksheet2' at line 1
+mysql> select *,(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >=33and chemistry>=33 and maths >=33:'pass','fail' )as result from marksheet2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'chemistry>=33 and maths >=33:'pass','fail' )as result from marksheet2' at line 1
+mysql> select *,(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >= 33 and chemistry >= 33 and maths >= 33: 'pass','fail' ) as result from marksheet2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': 'pass','fail' ) as result from marksheet2' at line 1
+mysql> select *,(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >= 33 and chemistry >= 33 and maths >= 33 : 'pass','fail' ) as result from marksheet2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': 'pass','fail' ) as result from marksheet2' at line 1
+mysql> select *,(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >= 33 and chemistry >= 33 and maths >= 33 'pass','fail' ) as result from marksheet2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''pass','fail' ) as result from marksheet2' at line 1
+mysql> select *,(physics+chemisty+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >= 33 and chemistry >= 33 and maths >= 33, 'pass','fail' ) as result from marksheet2;
+ERROR 1054 (42S22): Unknown column 'chemisty' in 'field list'
+mysql> select *,(physics+chemistry+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >= 33 and chemistry >= 33 and maths >= 33, 'pass','fail' ) as result from marksheet2;
++----+--------+-----------+---------+-----------+-------+-------+------------+--------+
+| id | rollno | name      | physics | chemistry | maths | total | percentage | result |
++----+--------+-----------+---------+-----------+-------+-------+------------+--------+
+|  1 |     11 | amit      |      33 |        33 |    33 |    99 |    33.0000 | pass   |
+|  2 |     12 | amit      |      33 |        33 |    33 |    99 |    33.0000 | pass   |
+|  3 |     13 | akbar     |      34 |        34 |    34 |   102 |    34.0000 | pass   |
+|  4 |     14 | anshul    |      99 |        89 |    65 |   253 |    84.3333 | pass   |
+|  5 |     14 | vedic     |      65 |        65 |    65 |   195 |    65.0000 | pass   |
+|  6 |     15 | ashtik    |      33 |        34 |    35 |   102 |    34.0000 | pass   |
+|  7 |     15 | chetan    |      45 |        45 |    45 |   135 |    45.0000 | pass   |
+|  8 |     16 | lucky     |      55 |        55 |    55 |   165 |    55.0000 | pass   |
+|  9 |     17 | kiran     |      99 |        87 |    55 |   241 |    80.3333 | pass   |
+| 10 |     18 | harsh     |      75 |        75 |    65 |   215 |    71.6667 | pass   |
+| 11 |     18 | prince    |     100 |       100 |    99 |   299 |    99.6667 | pass   |
+| 12 |     19 | divyanshu |      85 |        45 |    88 |   218 |    72.6667 | pass   |
+| 13 |     20 | monty     |      35 |        67 |    95 |   197 |    65.6667 | pass   |
++----+--------+-----------+---------+-----------+-------+-------+------------+--------+
+13 rows in set (0.00 sec)
+       select *,(physics+chemistry+maths)as total,((physics+chemistry+maths)/3)as percentage,if(physics >= 33 and chemistry >= 33 and maths >= 33, 'pass','fail' ) as result from marksheet2;^C
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage, if(physics >= 33 and chemistry >= 33 and maths >= 33, 'pass','fail' ) as result from marksheet2;
++----+--------+-----------+---------+-----------+-------+-------+------------+--------+
+| id | rollno | name      | physics | chemistry | maths | total | percentage | result |
++----+--------+-----------+---------+-----------+-------+-------+------------+--------+
+|  1 |     11 | amit      |      33 |        33 |    33 |    99 |    33.0000 | pass   |
+|  2 |     12 | amit      |      33 |        33 |    33 |    99 |    33.0000 | pass   |
+|  3 |     13 | akbar     |      34 |        34 |    34 |   102 |    34.0000 | pass   |
+|  4 |     14 | anshul    |      99 |        89 |    65 |   253 |    84.3333 | pass   |
+|  5 |     14 | vedic     |      65 |        65 |    65 |   195 |    65.0000 | pass   |
+|  6 |     15 | ashtik    |      33 |        34 |    35 |   102 |    34.0000 | pass   |
+|  7 |     15 | chetan    |      45 |        45 |    45 |   135 |    45.0000 | pass   |
+|  8 |     16 | lucky     |      55 |        55 |    55 |   165 |    55.0000 | pass   |
+|  9 |     17 | kiran     |      99 |        87 |    55 |   241 |    80.3333 | pass   |
+| 10 |     18 | harsh     |      75 |        75 |    65 |   215 |    71.6667 | pass   |
+| 11 |     18 | prince    |     100 |       100 |    99 |   299 |    99.6667 | pass   |
+| 12 |     19 | divyanshu |      85 |        45 |    88 |   218 |    72.6667 | pass   |
+| 13 |     20 | monty     |      35 |        67 |    95 |   197 |    65.6667 | pass   |
++----+--------+-----------+---------+-----------+-------+-------+------------+--------+
+13 rows in set (0.00 sec)
+
+mysql>
+--------------------------------DATE 21-05-2025--------------------------------------------------------------------
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| rays               |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use rays;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_rays |
++----------------+
+| employee       |
+| marksheet      |
+| marksheet1     |
+| marksheet2     |
+| st_college     |
+| st_course      |
+| st_faculty     |
+| st_marksheet   |
+| st_role        |
+| st_student     |
+| st_subject     |
+| st_timetable   |
+| st_user        |
+| user           |
+| user3          |
++----------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  1 | kiran     | yash          | 120000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  3 | lucky     | wipro         |  70000 |
+|  4 | lakhan    | impetus       | 250000 |
+|  6 | Uday      | NCS           |  38000 |
+|  7 | Uday      | tech mahindra |  75000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  9 | monty     | wipro         |  33000 |
+| 10 | akash     | apple         | 150000 |
+| 11 | shubam    | googele       | 250000 |
+| 12 | shubhank  | microsoft     | 990000 |
++----+-----------+---------------+--------+
+11 rows in set (0.03 sec)
+
+mysql> insert into employee values (13,'ramkishor','capegemni',22000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into employee values (13,'ramkishor','capegemni',22000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  1 | kiran     | yash          | 120000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  3 | lucky     | wipro         |  70000 |
+|  4 | lakhan    | impetus       | 250000 |
+|  6 | Uday      | NCS           |  38000 |
+|  7 | Uday      | tech mahindra |  75000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  9 | monty     | wipro         |  33000 |
+| 10 | akash     | apple         | 150000 |
+| 11 | shubam    | googele       | 250000 |
+| 12 | shubhank  | microsoft     | 990000 |
+| 13 | ramkishor | capegemni     |  22000 |
++----+-----------+---------------+--------+
+12 rows in set (0.00 sec)
+
+mysql> delete from employee where id =13;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  1 | kiran     | yash          | 120000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  3 | lucky     | wipro         |  70000 |
+|  4 | lakhan    | impetus       | 250000 |
+|  6 | Uday      | NCS           |  38000 |
+|  7 | Uday      | tech mahindra |  75000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  9 | monty     | wipro         |  33000 |
+| 10 | akash     | apple         | 150000 |
+| 11 | shubam    | googele       | 250000 |
+| 12 | shubhank  | microsoft     | 990000 |
++----+-----------+---------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> update into employee set 'salary'=22000 where id =12;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'into employee set 'salary'=22000 where id =12' at line 1
+mysql> update  employee set 'salary'=22000 where id =12;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''salary'=22000 where id =12' at line 1
+mysql> update  employee set salary = '22000' where id =12;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  1 | kiran     | yash          | 120000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  3 | lucky     | wipro         |  70000 |
+|  4 | lakhan    | impetus       | 250000 |
+|  6 | Uday      | NCS           |  38000 |
+|  7 | Uday      | tech mahindra |  75000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  9 | monty     | wipro         |  33000 |
+| 10 | akash     | apple         | 150000 |
+| 11 | shubam    | googele       | 250000 |
+| 12 | shubhank  | microsoft     |  22000 |
++----+-----------+---------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> update employee set name = 'komal' where id =1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  1 | komal     | yash          | 120000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  3 | lucky     | wipro         |  70000 |
+|  4 | lakhan    | impetus       | 250000 |
+|  6 | Uday      | NCS           |  38000 |
+|  7 | Uday      | tech mahindra |  75000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  9 | monty     | wipro         |  33000 |
+| 10 | akash     | apple         | 150000 |
+| 11 | shubam    | googele       | 250000 |
+| 12 | shubhank  | microsoft     |  22000 |
++----+-----------+---------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> update employee set company = 'serosoft' where id =12;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  1 | komal     | yash          | 120000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  3 | lucky     | wipro         |  70000 |
+|  4 | lakhan    | impetus       | 250000 |
+|  6 | Uday      | NCS           |  38000 |
+|  7 | Uday      | tech mahindra |  75000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  9 | monty     | wipro         |  33000 |
+| 10 | akash     | apple         | 150000 |
+| 11 | shubam    | googele       | 250000 |
+| 12 | shubhank  | serosoft      |  22000 |
++----+-----------+---------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> update employee set name = 'yugal',company = 'cognient',salary = '65000' where id = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  1 | yugal     | cognient      |  65000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  3 | lucky     | wipro         |  70000 |
+|  4 | lakhan    | impetus       | 250000 |
+|  6 | Uday      | NCS           |  38000 |
+|  7 | Uday      | tech mahindra |  75000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  9 | monty     | wipro         |  33000 |
+| 10 | akash     | apple         | 150000 |
+| 11 | shubam    | googele       | 250000 |
+| 12 | shubhank  | serosoft      |  22000 |
++----+-----------+---------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select from employee where salary>50000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from employee where salary>50000' at line 1
+mysql> select * from employee where salary>50000;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  1 | yugal     | cognient      |  65000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  3 | lucky     | wipro         |  70000 |
+|  4 | lakhan    | impetus       | 250000 |
+|  7 | Uday      | tech mahindra |  75000 |
+| 10 | akash     | apple         | 150000 |
+| 11 | shubam    | googele       | 250000 |
++----+-----------+---------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employee where salary>100000;
++----+--------+---------+--------+
+| id | name   | company | salary |
++----+--------+---------+--------+
+|  4 | lakhan | impetus | 250000 |
+| 10 | akash  | apple   | 150000 |
+| 11 | shubam | googele | 250000 |
++----+--------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary asc;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+| 12 | shubhank  | serosoft      |  22000 |
+|  9 | monty     | wipro         |  33000 |
+|  6 | Uday      | NCS           |  38000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  1 | yugal     | cognient      |  65000 |
+|  3 | lucky     | wipro         |  70000 |
+|  7 | Uday      | tech mahindra |  75000 |
+| 10 | akash     | apple         | 150000 |
+|  4 | lakhan    | impetus       | 250000 |
+| 11 | shubam    | googele       | 250000 |
++----+-----------+---------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  4 | lakhan    | impetus       | 250000 |
+| 11 | shubam    | googele       | 250000 |
+| 10 | akash     | apple         | 150000 |
+|  7 | Uday      | tech mahindra |  75000 |
+|  3 | lucky     | wipro         |  70000 |
+|  1 | yugal     | cognient      |  65000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  6 | Uday      | NCS           |  38000 |
+|  9 | monty     | wipro         |  33000 |
+| 12 | shubhank  | serosoft      |  22000 |
++----+-----------+---------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employee limit 0,1;
++----+-------+----------+--------+
+| id | name  | company  | salary |
++----+-------+----------+--------+
+|  1 | yugal | cognient |  65000 |
++----+-------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee limit 0,5;
++----+-----------+----------+--------+
+| id | name      | company  | salary |
++----+-----------+----------+--------+
+|  1 | yugal     | cognient |  65000 |
+|  2 | divyanshu | INFOYS   |  60000 |
+|  3 | lucky     | wipro    |  70000 |
+|  4 | lakhan    | impetus  | 250000 |
+|  6 | Uday      | NCS      |  38000 |
++----+-----------+----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary asc limit 0,3;
++----+----------+----------+--------+
+| id | name     | company  | salary |
++----+----------+----------+--------+
+| 12 | shubhank | serosoft |  22000 |
+|  9 | monty    | wipro    |  33000 |
+|  6 | Uday     | NCS      |  38000 |
++----+----------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc limit 0,3;
++----+--------+---------+--------+
+| id | name   | company | salary |
++----+--------+---------+--------+
+| 11 | shubam | googele | 250000 |
+|  4 | lakhan | impetus | 250000 |
+| 10 | akash  | apple   | 150000 |
++----+--------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee order by name desc limit 0,3;
++----+-------+---------------+--------+
+| id | name  | company       | salary |
++----+-------+---------------+--------+
+|  1 | yugal | cognient      |  65000 |
+|  6 | Uday  | NCS           |  38000 |
+|  7 | Uday  | tech mahindra |  75000 |
++----+-------+---------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee order by company desc limit 0,3;
++----+----------+---------+--------+
+| id | name     | company | salary |
++----+----------+---------+--------+
+|  9 | monty    | wipro   |  33000 |
+|  8 | abhishek | wipro   |  44000 |
+|  3 | lucky    | wipro   |  70000 |
++----+----------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select name,company,salary from employee;
++-----------+---------------+--------+
+| name      | company       | salary |
++-----------+---------------+--------+
+| yugal     | cognient      |  65000 |
+| divyanshu | INFOYS        |  60000 |
+| lucky     | wipro         |  70000 |
+| lakhan    | impetus       | 250000 |
+| Uday      | NCS           |  38000 |
+| Uday      | tech mahindra |  75000 |
+| abhishek  | wipro         |  44000 |
+| monty     | wipro         |  33000 |
+| akash     | apple         | 150000 |
+| shubam    | googele       | 250000 |
+| shubhank  | serosoft      |  22000 |
++-----------+---------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select id ,name,company,salary from employee;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  1 | yugal     | cognient      |  65000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  3 | lucky     | wipro         |  70000 |
+|  4 | lakhan    | impetus       | 250000 |
+|  6 | Uday      | NCS           |  38000 |
+|  7 | Uday      | tech mahindra |  75000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  9 | monty     | wipro         |  33000 |
+| 10 | akash     | apple         | 150000 |
+| 11 | shubam    | googele       | 250000 |
+| 12 | shubhank  | serosoft      |  22000 |
++----+-----------+---------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select salary from employee;
++--------+
+| salary |
++--------+
+|  65000 |
+|  60000 |
+|  70000 |
+| 250000 |
+|  38000 |
+|  75000 |
+|  44000 |
+|  33000 |
+| 150000 |
+| 250000 |
+|  22000 |
++--------+
+11 rows in set (0.00 sec)
+
+mysql> select id from employee;
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  4 |
+|  6 |
+|  7 |
+|  8 |
+|  9 |
+| 10 |
+| 11 |
+| 12 |
++----+
+11 rows in set (0.00 sec)
+
+mysql> select company from employee;
++---------------+
+| company       |
++---------------+
+| cognient      |
+| INFOYS        |
+| wipro         |
+| impetus       |
+| NCS           |
+| tech mahindra |
+| wipro         |
+| wipro         |
+| apple         |
+| googele       |
+| serosoft      |
++---------------+
+11 rows in set (0.00 sec)
+
+mysql> select name, salary where company ='wipro';
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select name, salary from  where company ='wipro';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where company ='wipro'' at line 1
+mysql> select name, salary from  employee where company ='wipro';
++----------+--------+
+| name     | salary |
++----------+--------+
+| lucky    |  70000 |
+| abhishek |  44000 |
+| monty    |  33000 |
++----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select name, salary from  employee where id = '1';
++-------+--------+
+| name  | salary |
++-------+--------+
+| yugal |  65000 |
++-------+--------+
+1 row in set (0.01 sec)
+
+mysql> select name from  employee where id = '10';
++-------+
+| name  |
++-------+
+| akash |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where company = 'wipro';
++----+----------+---------+--------+
+| id | name     | company | salary |
++----+----------+---------+--------+
+|  3 | lucky    | wipro   |  70000 |
+|  8 | abhishek | wipro   |  44000 |
+|  9 | monty    | wipro   |  33000 |
++----+----------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where salary = '33000';
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  9 | monty | wipro   |  33000 |
++----+-------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee  where name like 'a\'
+    '> ^C
+mysql> select * from employee  where name like 'a%'
+    -> ^C
+mysql> select * from employee  where name like 'a%';
++----+----------+---------+--------+
+| id | name     | company | salary |
++----+----------+---------+--------+
+|  8 | abhishek | wipro   |  44000 |
+| 10 | akash    | apple   | 150000 |
++----+----------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee  where name like '%a';
+Empty set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  1 | yugal     | cognient      |  65000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  3 | lucky     | wipro         |  70000 |
+|  4 | lakhan    | impetus       | 250000 |
+|  6 | Uday      | NCS           |  38000 |
+|  7 | Uday      | tech mahindra |  75000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  9 | monty     | wipro         |  33000 |
+| 10 | akash     | apple         | 150000 |
+| 11 | shubam    | googele       | 250000 |
+| 12 | shubhank  | serosoft      |  22000 |
++----+-----------+---------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employee  where name like '%l';
++----+-------+----------+--------+
+| id | name  | company  | salary |
++----+-------+----------+--------+
+|  1 | yugal | cognient |  65000 |
++----+-------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee  where name like 'y%';
++----+-------+----------+--------+
+| id | name  | company  | salary |
++----+-------+----------+--------+
+|  1 | yugal | cognient |  65000 |
++----+-------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select count (*) from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) from employee' at line 1
+mysql> select sum (salary) from employee;
+ERROR 1630 (42000): FUNCTION rays.sum does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> select sum (salary)  as totalsalary from employee;
+ERROR 1630 (42000): FUNCTION rays.sum does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> select sum(salary)from employee;
++-------------+
+| sum(salary) |
++-------------+
+|     1057000 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select max(salary)from employee;
++-------------+
+| max(salary) |
++-------------+
+|      250000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary)from employee;
++-------------+
+| min(salary) |
++-------------+
+|       22000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select secondhigest(salary)from employee;
+ERROR 1305 (42000): FUNCTION rays.secondhigest does not exist
+mysql> select max(salary) as second highest salary from  employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'highest salary from  employee' at line 1
+mysql> select max(salary) as secondhighestsalary from  employee;
++---------------------+
+| secondhighestsalary |
++---------------------+
+|              250000 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) as thirdhighestsalary from  employee;
++--------------------+
+| thirdhighestsalary |
++--------------------+
+|             250000 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+---------------+--------+
+| id | name      | company       | salary |
++----+-----------+---------------+--------+
+|  1 | yugal     | cognient      |  65000 |
+|  2 | divyanshu | INFOYS        |  60000 |
+|  3 | lucky     | wipro         |  70000 |
+|  4 | lakhan    | impetus       | 250000 |
+|  6 | Uday      | NCS           |  38000 |
+|  7 | Uday      | tech mahindra |  75000 |
+|  8 | abhishek  | wipro         |  44000 |
+|  9 | monty     | wipro         |  33000 |
+| 10 | akash     | apple         | 150000 |
+| 11 | shubam    | googele       | 250000 |
+| 12 | shubhank  | serosoft      |  22000 |
++----+-----------+---------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select max(salary) as fourthhighestsalary from  employee;
++---------------------+
+| fourthhighestsalary |
++---------------------+
+|              250000 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee order by salary desc limit 0,1;
++----+--------+---------+--------+
+| id | name   | company | salary |
++----+--------+---------+--------+
+|  4 | lakhan | impetus | 250000 |
++----+--------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee order by salary desc limit 0,2;
++----+--------+---------+--------+
+| id | name   | company | salary |
++----+--------+---------+--------+
+| 11 | shubam | googele | 250000 |
+|  4 | lakhan | impetus | 250000 |
++----+--------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc limit 1,1;
++----+--------+---------+--------+
+| id | name   | company | salary |
++----+--------+---------+--------+
+|  4 | lakhan | impetus | 250000 |
++----+--------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee order by salary desc limit 2,1;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+| 10 | akash | apple   | 150000 |
++----+-------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql>
+
+---------------------------------------------DATE 21-05-2-25------------------------------------------------------
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use marksheet2;
+ERROR 1049 (42000): Unknown database 'marksheet2'
+mysql> use marksheet3;
+ERROR 1049 (42000): Unknown database 'marksheet3'
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| rays               |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use rays;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_rays |
++----------------+
+| employee       |
+| marksheet      |
+| marksheet1     |
+| marksheet2     |
+| st_college     |
+| st_course      |
+| st_faculty     |
+| st_marksheet   |
+| st_role        |
+| st_student     |
+| st_subject     |
+| st_timetable   |
+| st_user        |
+| user           |
+| user3          |
++----------------+
+15 rows in set (0.01 sec)
+
+mysql> use marksheet2;
+ERROR 1049 (42000): Unknown database 'marksheet2'
+mysql> select * from marksheet2;
++----+--------+-----------+---------+-----------+-------+
+| id | rollno | name      | physics | chemistry | maths |
++----+--------+-----------+---------+-----------+-------+
+|  1 |     11 | amit      |      33 |        33 |    33 |
+|  2 |     12 | amit      |      33 |        33 |    33 |
+|  3 |     13 | akbar     |      34 |        34 |    34 |
+|  4 |     14 | anshul    |      99 |        89 |    65 |
+|  5 |     14 | vedic     |      65 |        65 |    65 |
+|  6 |     15 | ashtik    |      33 |        34 |    35 |
+|  7 |     15 | chetan    |      45 |        45 |    45 |
+|  8 |     16 | lucky     |      55 |        55 |    55 |
+|  9 |     17 | kiran     |      99 |        87 |    55 |
+| 10 |     18 | harsh     |      75 |        75 |    65 |
+| 11 |     18 | prince    |     100 |       100 |    99 |
+| 12 |     19 | divyanshu |      85 |        45 |    88 |
+| 13 |     20 | monty     |      35 |        67 |    95 |
++----+--------+-----------+---------+-----------+-------+
+13 rows in set (0.01 sec)
+
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage, if(physics >= 33 and chemistry >= 33 and maths >= 33, 'pass','fail' ) as result from marksheet2;
++----+--------+-----------+---------+-----------+-------+-------+------------+--------+
+| id | rollno | name      | physics | chemistry | maths | total | percentage | result |
++----+--------+-----------+---------+-----------+-------+-------+------------+--------+
+|  1 |     11 | amit      |      33 |        33 |    33 |    99 |    33.0000 | pass   |
+|  2 |     12 | amit      |      33 |        33 |    33 |    99 |    33.0000 | pass   |
+|  3 |     13 | akbar     |      34 |        34 |    34 |   102 |    34.0000 | pass   |
+|  4 |     14 | anshul    |      99 |        89 |    65 |   253 |    84.3333 | pass   |
+|  5 |     14 | vedic     |      65 |        65 |    65 |   195 |    65.0000 | pass   |
+|  6 |     15 | ashtik    |      33 |        34 |    35 |   102 |    34.0000 | pass   |
+|  7 |     15 | chetan    |      45 |        45 |    45 |   135 |    45.0000 | pass   |
+|  8 |     16 | lucky     |      55 |        55 |    55 |   165 |    55.0000 | pass   |
+|  9 |     17 | kiran     |      99 |        87 |    55 |   241 |    80.3333 | pass   |
+| 10 |     18 | harsh     |      75 |        75 |    65 |   215 |    71.6667 | pass   |
+| 11 |     18 | prince    |     100 |       100 |    99 |   299 |    99.6667 | pass   |
+| 12 |     19 | divyanshu |      85 |        45 |    88 |   218 |    72.6667 | pass   |
+| 13 |     20 | monty     |      35 |        67 |    95 |   197 |    65.6667 | pass   |
++----+--------+-----------+---------+-----------+-------+-------+------------+--------+
+13 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage from marksheet2 where physics >=33 and chemistry >=33 and maths >=33 order by desc limit o,3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc limit o,3' at line 1
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage from marksheet2 where physics >=33 and chemistry >=33 and maths >=33 order by total  desc limit o,3;
+ERROR 1327 (42000): Undeclared variable: o
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage from marksheet2 where physics>=33 and chemistry>=33 and maths>=33 order by total  desc limit 0,3;
++----+--------+--------+---------+-----------+-------+-------+------------+
+| id | rollno | name   | physics | chemistry | maths | total | percentage |
++----+--------+--------+---------+-----------+-------+-------+------------+
+| 11 |     18 | prince |     100 |       100 |    99 |   299 |    99.6667 |
+|  4 |     14 | anshul |      99 |        89 |    65 |   253 |    84.3333 |
+|  9 |     17 | kiran  |      99 |        87 |    55 |   241 |    80.3333 |
++----+--------+--------+---------+-----------+-------+-------+------------+
+3 rows in set (0.00 sec)
+
+mysql>
+---------------------------------------------------DATE 21-05-2025----------------------------------------------------------------------
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| rays               |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use rays;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_rays |
++----------------+
+| employee       |
+| marksheet      |
+| marksheet1     |
+| marksheet2     |
+| st_college     |
+| st_course      |
+| st_faculty     |
+| st_marksheet   |
+| st_role        |
+| st_student     |
+| st_subject     |
+| st_timetable   |
+| st_user        |
+| user           |
+| user3          |
++----------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+---------------+--------+--------+
+| id | name      | company       | salary | dep_id |
++----+-----------+---------------+--------+--------+
+|  1 | yugal     | cognient      |  65000 |   NULL |
+|  2 | divyanshu | INFOYS        |  60000 |   NULL |
+|  3 | lucky     | wipro         |  70000 |   NULL |
+|  4 | lakhan    | impetus       | 250000 |   NULL |
+|  6 | Uday      | NCS           |  38000 |   NULL |
+|  7 | Uday      | tech mahindra |  75000 |   NULL |
+|  8 | abhishek  | wipro         |  44000 |   NULL |
+|  9 | monty     | wipro         |  33000 |   NULL |
+| 10 | akash     | apple         | 150000 |   NULL |
+| 11 | shubam    | googele       | 250000 |   NULL |
+| 12 | shubhank  | serosoft      |  22000 |   NULL |
++----+-----------+---------------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> create table department(id int primary key,depName varchar(45));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into department values (1, 'HR'),(2, 'Manager'),(3, 'Developer'),(4, 'Account');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from department;
++----+-----------+
+| id | depName   |
++----+-----------+
+|  1 | HR        |
+|  2 | Manager   |
+|  3 | Developer |
+|  4 | Account   |
++----+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+---------------+--------+--------+
+| id | name      | company       | salary | dep_id |
++----+-----------+---------------+--------+--------+
+|  1 | yugal     | cognient      |  65000 |   NULL |
+|  2 | divyanshu | INFOYS        |  60000 |   NULL |
+|  3 | lucky     | wipro         |  70000 |   NULL |
+|  4 | lakhan    | impetus       | 250000 |   NULL |
+|  6 | Uday      | NCS           |  38000 |   NULL |
+|  7 | Uday      | tech mahindra |  75000 |   NULL |
+|  8 | abhishek  | wipro         |  44000 |   NULL |
+|  9 | monty     | wipro         |  33000 |   NULL |
+| 10 | akash     | apple         | 150000 |   NULL |
+| 11 | shubam    | googele       | 250000 |   NULL |
+| 12 | shubhank  | serosoft      |  22000 |   NULL |
++----+-----------+---------------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> alter table employee  add foreign key(dep_id) references department (id);
+Query OK, 11 rows affected (0.08 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
+mysql> select * from department;
++----+-----------+
+| id | depName   |
++----+-----------+
+|  1 | HR        |
+|  2 | Manager   |
+|  3 | Developer |
+|  4 | Account   |
++----+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+---------------+--------+--------+
+| id | name      | company       | salary | dep_id |
++----+-----------+---------------+--------+--------+
+|  1 | yugal     | cognient      |  65000 |   NULL |
+|  2 | divyanshu | INFOYS        |  60000 |   NULL |
+|  3 | lucky     | wipro         |  70000 |   NULL |
+|  4 | lakhan    | impetus       | 250000 |   NULL |
+|  6 | Uday      | NCS           |  38000 |   NULL |
+|  7 | Uday      | tech mahindra |  75000 |   NULL |
+|  8 | abhishek  | wipro         |  44000 |   NULL |
+|  9 | monty     | wipro         |  33000 |   NULL |
+| 10 | akash     | apple         | 150000 |   NULL |
+| 11 | shubam    | googele       | 250000 |   NULL |
+| 12 | shubhank  | serosoft      |  22000 |   NULL |
++----+-----------+---------------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> update employee set dep_id = 2 where id = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+---------------+--------+--------+
+| id | name      | company       | salary | dep_id |
++----+-----------+---------------+--------+--------+
+|  1 | yugal     | cognient      |  65000 |      2 |
+|  2 | divyanshu | INFOYS        |  60000 |   NULL |
+|  3 | lucky     | wipro         |  70000 |   NULL |
+|  4 | lakhan    | impetus       | 250000 |   NULL |
+|  6 | Uday      | NCS           |  38000 |   NULL |
+|  7 | Uday      | tech mahindra |  75000 |   NULL |
+|  8 | abhishek  | wipro         |  44000 |   NULL |
+|  9 | monty     | wipro         |  33000 |   NULL |
+| 10 | akash     | apple         | 150000 |   NULL |
+| 11 | shubam    | googele       | 250000 |   NULL |
+| 12 | shubhank  | serosoft      |  22000 |   NULL |
++----+-----------+---------------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> update employee set dep_id = 1 where id = 5;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+---------------+--------+--------+
+| id | name      | company       | salary | dep_id |
++----+-----------+---------------+--------+--------+
+|  1 | yugal     | cognient      |  65000 |      2 |
+|  2 | divyanshu | INFOYS        |  60000 |   NULL |
+|  3 | lucky     | wipro         |  70000 |   NULL |
+|  4 | lakhan    | impetus       | 250000 |   NULL |
+|  6 | Uday      | NCS           |  38000 |   NULL |
+|  7 | Uday      | tech mahindra |  75000 |   NULL |
+|  8 | abhishek  | wipro         |  44000 |   NULL |
+|  9 | monty     | wipro         |  33000 |   NULL |
+| 10 | akash     | apple         | 150000 |   NULL |
+| 11 | shubam    | googele       | 250000 |   NULL |
+| 12 | shubhank  | serosoft      |  22000 |   NULL |
++----+-----------+---------------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> update employee set dep_id = 1 where id = 6;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+---------------+--------+--------+
+| id | name      | company       | salary | dep_id |
++----+-----------+---------------+--------+--------+
+|  1 | yugal     | cognient      |  65000 |      2 |
+|  2 | divyanshu | INFOYS        |  60000 |   NULL |
+|  3 | lucky     | wipro         |  70000 |   NULL |
+|  4 | lakhan    | impetus       | 250000 |   NULL |
+|  6 | Uday      | NCS           |  38000 |      1 |
+|  7 | Uday      | tech mahindra |  75000 |   NULL |
+|  8 | abhishek  | wipro         |  44000 |   NULL |
+|  9 | monty     | wipro         |  33000 |   NULL |
+| 10 | akash     | apple         | 150000 |   NULL |
+| 11 | shubam    | googele       | 250000 |   NULL |
+| 12 | shubhank  | serosoft      |  22000 |   NULL |
++----+-----------+---------------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> update employee set dep_id = 3  where id = 2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+---------------+--------+--------+
+| id | name      | company       | salary | dep_id |
++----+-----------+---------------+--------+--------+
+|  1 | yugal     | cognient      |  65000 |      2 |
+|  2 | divyanshu | INFOYS        |  60000 |      3 |
+|  3 | lucky     | wipro         |  70000 |   NULL |
+|  4 | lakhan    | impetus       | 250000 |   NULL |
+|  6 | Uday      | NCS           |  38000 |      1 |
+|  7 | Uday      | tech mahindra |  75000 |   NULL |
+|  8 | abhishek  | wipro         |  44000 |   NULL |
+|  9 | monty     | wipro         |  33000 |   NULL |
+| 10 | akash     | apple         | 150000 |   NULL |
+| 11 | shubam    | googele       | 250000 |   NULL |
+| 12 | shubhank  | serosoft      |  22000 |   NULL |
++----+-----------+---------------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql> update employee set dep_id = 4 where id = 12;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+---------------+--------+--------+
+| id | name      | company       | salary | dep_id |
++----+-----------+---------------+--------+--------+
+|  1 | yugal     | cognient      |  65000 |      2 |
+|  2 | divyanshu | INFOYS        |  60000 |      3 |
+|  3 | lucky     | wipro         |  70000 |   NULL |
+|  4 | lakhan    | impetus       | 250000 |   NULL |
+|  6 | Uday      | NCS           |  38000 |      1 |
+|  7 | Uday      | tech mahindra |  75000 |   NULL |
+|  8 | abhishek  | wipro         |  44000 |   NULL |
+|  9 | monty     | wipro         |  33000 |   NULL |
+| 10 | akash     | apple         | 150000 |   NULL |
+| 11 | shubam    | googele       | 250000 |   NULL |
+| 12 | shubhank  | serosoft      |  22000 |      4 |
++----+-----------+---------------+--------+--------+
+11 rows in set (0.00 sec)
+
+mysql>
+
